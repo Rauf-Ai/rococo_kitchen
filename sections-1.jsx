@@ -51,7 +51,7 @@ function Hero() {
   const y = useScrollY();
   // Map scroll to parallax offsets. Layers are stacked identically and use translate3d ONLY.
   // Back layers move DOWN more (positive) so they "lag" behind = parallax depth illusion.
-  const speeds = [0.28, 0.16, 0.08, -0.04];
+  const speeds = [0.65, 0.38, 0.18, -0.10];
   // Layers, in stacking order back→front (island layer removed)
   const layers = [
     { src: 'assets/layer-1-landscape.png', cls: 'h-l1' },
