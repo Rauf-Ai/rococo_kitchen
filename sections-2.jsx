@@ -57,55 +57,50 @@ function About() {
 }
 
 // ===== Stages =====
-const STAGES = [
-  {
-    num: '01',
-    title: 'Замер дизайнера',
-    body: 'К вам бесплатно приедет наш дизайнер с образцами фасадов, палитрой расцветок и каталогом фурнитуры. Точно снимет размеры, проконсультирует и поможет подобрать материалы под бюджет.',
-    note: 'Бесплатно при заключении договора',
-    accent: true,
-  },
-  {
-    num: '02',
-    title: 'Дизайн-проект',
-    body: 'До запуска в производство сделаем 3D-визуализацию с учётом размеров, выбранных материалов и цветов. Вы увидите, как кухня будет выглядеть в вашем помещении, и сможете внести правки до 3 итераций.',
-    note: 'Бесплатно при заключении договора',
-    image: 'assets/case3-3.jpg',
-  },
-  {
-    num: '03',
-    title: 'Производство и монтаж',
-    body: 'От 10 дней — изготовление фасадов и корпусов на собственном заводе. Не зависим от внешних поставщиков. Выезжаем на ваш объект и собираем кухню под ключ.',
-  },
-  {
-    num: '04',
-    title: 'Гарантия 12 месяцев',
-    body: 'Гарантия на фасады, кромки и все механизмы — петли, направляющие, доводчики. Если что-то клинит, отклеивается или плохо закрывается — чиним бесплатно.',
-    image: 'assets/case1-4.jpg',
-  },
-];
-
 function Stages() {
   return (
     <section id="stages" className="stages">
       <div className="wrap">
         <div className="reveal">
           <h2 className="section-h">Этапы работы</h2>
-          <p className="section-sub">4 простых шага к кухне мечты: от бесплатного замера дизайнера до монтажа и гарантии.</p>
+          <p className="section-sub">4 простых шага к кухне мечты: от замера до монтажа и гарантии.</p>
         </div>
         <div className="stages-grid">
-          {STAGES.map((s, i) => (
-            <article key={s.num}
-              className={`stage-card reveal d${(i%4)+1} ${s.accent ? 'stage-mocha' : ''} ${s.image ? 'stage-image' : ''}`}
-              style={s.image ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url(${s.image})` } : null}>
-              <div className="stage-head">
-                <span className={`stage-num ${s.accent ? 'stage-num-white' : ''} ${s.image ? 'stage-num-glass' : ''}`}>{s.num}</span>
-                <h3 className="stage-t">{s.title}</h3>
-              </div>
-              <p className="stage-body">{s.body}</p>
-              {s.note && <div className="stage-note">{s.note}</div>}
+
+          {/* 01 — top left, cream */}
+          <article className="stage-card stage-cream reveal d1">
+            <span className="stage-num-badge">01</span>
+            <h3 className="stage-t">Замер дизайнера</h3>
+            <p className="stage-body">К вам бесплатно приедет наш дизайнер с образцами фасадов, палитрой расцветок и каталогом фурнитуры. Точно снимет размеры, проконсультирует и поможет подобрать материалы под бюджет.</p>
+            <div className="stage-note">Бесплатно при заключении договора</div>
+          </article>
+
+          {/* 02 — top right, white */}
+          <article className="stage-card stage-white reveal d2">
+            <span className="stage-num-badge">02</span>
+            <h3 className="stage-t">Дизайн-проект</h3>
+            <p className="stage-body">До запуска в производство сделаем 3D-визуализацию с учётом размеров, выбранных материалов и цветов. Вы увидите, как кухня будет выглядеть в вашем помещении, и сможете внести правки.</p>
+            <div className="stage-note">Бесплатно при заключении договора</div>
+          </article>
+
+          {/* Photo — bottom left */}
+          <article className="stage-card stage-photo reveal d3"
+            style={{ backgroundImage: 'url(assets/case7-6.jpg)' }} aria-hidden="true"/>
+
+          {/* 03 + 04 — bottom right, stacked */}
+          <div className="stages-stack reveal d4">
+            <article className="stage-card stage-white">
+              <span className="stage-num-badge">03</span>
+              <h3 className="stage-t">Производство и монтаж</h3>
+              <p className="stage-body">От 10 дней — изготовление на собственном заводе с ЧПУ-станками. Выезжаем на объект и собираем кухню под ключ.</p>
             </article>
-          ))}
+            <article className="stage-card stage-cream">
+              <span className="stage-num-badge">04</span>
+              <h3 className="stage-t">Гарантия 12 месяцев</h3>
+              <p className="stage-body">На фасады, кромки и все механизмы — петли, направляющие, доводчики. Если что-то клинит — чиним бесплатно.</p>
+            </article>
+          </div>
+
         </div>
       </div>
     </section>
