@@ -1,4 +1,4 @@
-/* global React, IconArrowR, IconCheck, IconGift, IconTg */
+/* global React, IconArrowR, IconCheck, IconGift, IconTg, sendToTelegram */
 const { useState: useSC, useMemo: useMC } = React;
 
 const STYLES = [
@@ -337,7 +337,30 @@ function Calculator() {
                       <h3 className="calc-q">Куда отправить расчёт?</h3>
                       <p className="calc-q-sub">Отправим в WhatsApp / Telegram и созвонимся в удобное время.</p>
                     </div>
-                    <form className="calc-contact" onSubmit={(e) => { e.preventDefault(); if (data.name && data.phone) setDone(true); }}>
+                    <form className="calc-contact" onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!data.name || !data.phone) return;
+                      setDone(true);
+                      const styleLabel = STYLES.find(s => s.id === data.style)?.label || '—';
+                      const shapeLabel = SHAPES.find(s => s.id === data.shape)?.label || '—';
+                      const timingLabel = TIMING.find(t => t.id === data.timing)?.label || '—';
+                      const sizeText = data.noSize ? 'Нужен замерщик' : `А: ${data.sideA} м / Б: ${data.sideB} м`;
+                      const msg = [
+                        '🧮 <b>Новая заявка — Калькулятор кухни</b>',
+                        '',
+                        `👤 <b>Имя:</b> ${data.name}`,
+                        `📞 <b>Телефон:</b> ${data.phone}`,
+                        '',
+                        `🎨 <b>Стиль:</b> ${styleLabel}`,
+                        `📐 <b>Планировка:</b> ${shapeLabel}`,
+                        `📏 <b>Размер:</b> ${sizeText}`,
+                        `⏰ <b>Когда заказать:</b> ${timingLabel}`,
+                        `💰 <b>Бюджет:</b> ${data.budget.toLocaleString('ru-RU')} ₽`,
+                        '',
+                        `🌐 <b>Источник:</b> Квиз на сайте Rococo Mebel`,
+                      ].join('\n');
+                      sendToTelegram(msg);
+                    }}>
                       <input className="field" placeholder="Ваше имя" value={data.name} onChange={(e) => setData(d => ({...d, name: e.target.value}))} required/>
                       <input className="field" type="tel" placeholder="+7 (___) ___-__-__" value={data.phone} onChange={(e) => setData(d => ({...d, phone: e.target.value}))} required/>
                       <button className="btn btn-primary btn-lg calc-submit" type="submit">

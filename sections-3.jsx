@@ -156,6 +156,16 @@ function Lead() {
     e.preventDefault();
     if (!data.name || !data.phone) return;
     setSent(true);
+    const msg = [
+      '📋 <b>Новая заявка — Бесплатный замер</b>',
+      '',
+      `👤 <b>Имя:</b> ${data.name}`,
+      `📞 <b>Телефон:</b> ${data.phone}`,
+      data.comment ? `💬 <b>Комментарий:</b> ${data.comment}` : '',
+      '',
+      `🌐 <b>Источник:</b> Сайт Rococo Mebel`,
+    ].filter(Boolean).join('\n');
+    sendToTelegram(msg);
   };
   return (
     <section id="lead" className="lead">

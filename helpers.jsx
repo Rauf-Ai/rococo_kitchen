@@ -108,8 +108,24 @@ const IconBurger = (p) => (
   </svg>
 );
 
+// ===== Telegram notification =====
+const TG_TOKEN = '8735229938:AAGCmNPz_U6KeqnVALzNFOky0hqXuwjKNPw';
+const TG_CHAT  = '730539864';
+
+function sendToTelegram(text) {
+  return fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: TG_CHAT,
+      text,
+      parse_mode: 'HTML',
+    }),
+  }).catch(() => {});
+}
+
 Object.assign(window, {
-  useReveal, useScrollY, smoothScrollTo,
+  useReveal, useScrollY, smoothScrollTo, sendToTelegram,
   IconArrowUR, IconArrowR, IconPhone, IconGift, IconCheck, IconChevD,
   IconStar, IconYandex, IconPin, IconTg, IconClose, IconBurger,
 });
