@@ -1,0 +1,100 @@
+/* ===== Fonts ===== */
+@font-face {
+  font-family: 'Druk Wide Cyr';
+  src: url('assets/DrukCyr-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('assets/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Tokens ===== */
+:root {
+  --bg: #EEEDE9;
+  --bg-2: #F4F2EE;
+  --card: #FFFFFF;
+  --ink: #0C0E0E;
+  --ink-2: #1E1E1E;
+  --muted: #6B6660;
+  --line: rgba(12, 14, 14, 0.08);
+  --mocha: #BF9F86;
+  --mocha-deep: #A78877;
+  --mocha-soft: #D8C5B5;
+  --dark: #0C0E0E;
+  --dark-2: #15171A;
+  --r-sm: 18px;
+  --r-md: 28px;
+  --r-lg: 40px;
+  --r-xl: 56px;
+  --r-2xl: 72px;
+  --shadow-card: 0 4px 24px rgba(12,14,14,0.04), 0 32px 64px rgba(12,14,14,0.06);
+  --shadow-lift: 0 8px 40px rgba(12,14,14,0.10), 0 40px 80px rgba(12,14,14,0.12);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --display: 'Druk Wide Cyr', 'Arial Black', system-ui, sans-serif;
+  --body: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--body); }
+body { overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+input, textarea { font-family: inherit; }
+
+/* ===== Type ===== */
+.display { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.95; }
+.eyebrow { font-family: var(--body); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.body-l { font-size: 22px; line-height: 1.35; }
+.body { font-size: 18px; line-height: 1.5; }
+.body-s { font-size: 15px; line-height: 1.5; color: var(--muted); }
+
+/* ===== Layout ===== */
+.wrap { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 720px) { .wrap { padding: 0 16px; } }
+
+/* ===== Buttons ===== */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 28px; border-radius: 999px; font-size: 16px; font-weight: 500; transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .25s var(--ease); }
+.btn-primary { background: var(--mocha-deep); color: #fff; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(167, 136, 119, 0.35); background: #b3927e; }
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { transform: translateY(-2px); background: #1f2123; }
+.btn-ghost { background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: var(--ink); border: 1px solid rgba(255,255,255,0.65); }
+.btn-ghost:hover { transform: translateY(-2px); background: rgba(255,255,255,0.8); }
+.btn-lg { padding: 22px 36px; font-size: 17px; }
+
+/* ===== Glass header ===== */
+.glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 8px 32px rgba(12,14,14,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* ===== Reveal anim ===== */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); will-change: transform, opacity; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+.reveal.d4 { transition-delay: .32s; }
+
+/* ===== Inputs ===== */
+.field { width: 100%; padding: 20px 24px; border-radius: 22px; background: #fff; border: 1px solid var(--line); font-size: 17px; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; }
+.field:focus { border-color: var(--mocha-deep); box-shadow: 0 0 0 4px rgba(167,136,119,0.12); }
+textarea.field { min-height: 120px; resize: vertical; font-family: inherit; }
+
+/* ===== Section heading ===== */
+.section-h { font-family: var(--display); font-size: clamp(40px, 6vw, 96px); line-height: 0.96; letter-spacing: -0.01em; text-transform: uppercase; margin: 0; }
+.section-sub { font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); margin-top: 16px; max-width: 720px; line-height: 1.4; }
+
+/* ===== Section spacing ===== */
+section { padding: 120px 0; position: relative; }
+@media (max-width: 920px) { section { padding: 88px 0; } }
+@media (max-width: 720px) { section { padding: 56px 0; } }
