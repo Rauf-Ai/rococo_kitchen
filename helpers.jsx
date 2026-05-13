@@ -113,16 +113,16 @@ const TG_TOKEN = '8735229938:AAGCmNPz_U6KeqnVALzNFOky0hqXuwjKNPw';
 const TG_CHAT  = '730539864';
 
 function sendToTelegram(text) {
-  return fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+  return fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: TG_CHAT,
-      text,
-      parse_mode: 'HTML',
-    }),
-  }).catch(() => {});
+    body: JSON.stringify({ chat_id: TG_CHAT, text: text, parse_mode: 'HTML' }),
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) { if (!d.ok) console.warn('TG error', d); })
+  .catch(function(e) { console.warn('TG fetch error', e); });
 }
+window.sendToTelegram = sendToTelegram;
 
 Object.assign(window, {
   useReveal, useScrollY, smoothScrollTo, sendToTelegram,

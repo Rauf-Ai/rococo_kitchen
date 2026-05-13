@@ -1,4 +1,4 @@
-/* global React, smoothScrollTo, IconStar, IconYandex, IconArrowR, IconArrowUR, IconChevD, IconCheck, IconGift, IconTg, IconPin */
+/* global React, smoothScrollTo, sendToTelegram, IconStar, IconYandex, IconArrowR, IconArrowUR, IconChevD, IconCheck, IconGift, IconTg, IconPin, IconClose */
 const { useState: useS3, useRef: useR3 } = React;
 
 // ===== Reviews =====
@@ -165,7 +165,7 @@ function Lead() {
       '',
       `🌐 <b>Источник:</b> Сайт Rococo Mebel`,
     ].filter(Boolean).join('\n');
-    sendToTelegram(msg);
+    window.sendToTelegram && window.sendToTelegram(msg);
   };
   return (
     <section id="lead" className="lead">

@@ -359,7 +359,7 @@ function Calculator() {
                         '',
                         `🌐 <b>Источник:</b> Квиз на сайте Rococo Mebel`,
                       ].join('\n');
-                      sendToTelegram(msg);
+                      window.sendToTelegram && window.sendToTelegram(msg);
                     }}>
                       <input className="field" placeholder="Ваше имя" value={data.name} onChange={(e) => setData(d => ({...d, name: e.target.value}))} required/>
                       <input className="field" type="tel" placeholder="+7 (___) ___-__-__" value={data.phone} onChange={(e) => setData(d => ({...d, phone: e.target.value}))} required/>
