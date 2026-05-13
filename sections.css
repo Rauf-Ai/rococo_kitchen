@@ -208,6 +208,10 @@
 }
 @media (max-width: 720px) {
   .hero { min-height: 500px; height: 88vh; }
+  /* Layers 1+2: shift image anchor upward so kitchen is visible higher */
+  .h-l1 img { object-position: center 20%; }
+  .h-l2 img { object-position: center 15%; }
+  /* Layer 3 title: stays in place */
   .h-l3 img { width: min(90%, 480px); top: 44%; }
   .h-l5 img { width: min(60%, 280px); top: 63%; }
   .hero-actions { bottom: 28px; gap: 8px; flex-wrap: wrap; justify-content: center; }
